@@ -1,0 +1,1 @@
+# Windows-System-Diagnose.ps1
