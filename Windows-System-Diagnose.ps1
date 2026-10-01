@@ -1,4 +1,3 @@
-
 <#
 ====================================================================
  Autor: Yousof Neisi (neisitech.de)
@@ -20,11 +19,16 @@ function Get-HardwareInfo {
     Show-Header
     Write-Host "`n[ 1. HARDWARE & SYSTEMINFORMATIONEN ]" -ForegroundColor Yellow
     
-    $OS = Get-CimInstance Win32_OperatingSystem$CPU = Get-CimInstance Win32_Processor
-    $Uptime = (Get-Date) -$OS.LastBootUpTime
+    # Befehle einzeln mit Semikolon abgesichert gegen Copy-Paste-Fehler
+    $OS = Get-CimInstance -ClassName Win32_OperatingSystem;
+    $CPU = Get-CimInstance -ClassName Win32_Processor;
+    
+    # Robuste Laufzeit-Berechnung
+    $LastBoot =$OS.LastBootUpTime;
+    $Uptime = (Get-Date) -$LastBoot;
 
-    $RAM_Total = [math]::Round($OS.TotalVisibleMemorySize / 1MB, 2)
-    $RAM_Free  = [math]::Round($OS.FreePhysicalMemory / 1MB, 2)
+    $RAM_Total = [math]::Round($OS.TotalVisibleMemorySize / 1MB, 2);
+    $RAM_Free  = [math]::Round($OS.FreePhysicalMemory / 1MB, 2);
 
     Write-Host "Computer Name : $env:COMPUTERNAME"
     Write-Host "Betriebssystem: $($OS.Caption) ($($OS.OSArchitecture))"
@@ -120,5 +124,3 @@ while ($true) {
         }
     }
 }
-
-
