@@ -1,3 +1,4 @@
+```powershell
 <#
 ====================================================================
  Autor: Yousof Neisi (neisitech.de)
@@ -91,7 +92,6 @@ $(Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.InterfaceAlias -notli
     Write-Host "Bericht erfolgreich gespeichert unter:`n$ReportPath" -ForegroundColor Green
 }
 
-# Hauptmenü-Schleife
 while ($true) {
     Show-Header
     Write-Host "`nBitte wähle eine Option aus:"
@@ -120,3 +120,5 @@ while ($true) {
         }
     }
 }
+
+```
